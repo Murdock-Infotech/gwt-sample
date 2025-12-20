@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modular Web Application</title>
+  <script type="text/javascript" language="javascript"
+          src="modularwebapp/modularwebapp.nocache.js"
+          onerror="window.__gwt_bootstrap_failed = true;"></script>
+</head>
+<body>
+  <div id="gwtRoot"></div>
+  <div id="gwt-loading" style="display:none; margin-top: 12px; color: #b71c1c;"></div>
+  <noscript>
+    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+      Your web browser must have JavaScript enabled in order for this application to display correctly.
+    </div>
+  </noscript>
+
+  <script>
+    window.addEventListener('load', function() {
+      // When opened directly from disk, the compiled output isn't available unless you're pointing at the WAR output folder.
+      if (window.location.protocol === 'file:') {
+        var box = document.getElementById('gwt-loading');
+        box.textContent = "This page is being viewed via file://. Serve it via the server or open the compiled WAR output so /modularwebapp/* is available.";
+        box.style.display = 'block';
+        return;
+      }
+
+      setTimeout(function() {
+        if (window.__gwt_bootstrap_failed || typeof modularwebapp === 'undefined') {
+          var box = document.getElementById('gwt-loading');
+          box.textContent = "GWT client didn't load. Check that /modularwebapp/modularwebapp.nocache.js is reachable and that you ran the GWT build.";
+          box.style.display = 'block';
+        }
+      }, 750);
+    });
+  </script>
+</body>
+</html>
+
+

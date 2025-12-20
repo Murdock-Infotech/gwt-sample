@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>murdockinfotech</groupId>
+    <artifactId>modular-webapp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>modular-webapp-server</artifactId>
+  <packaging>jar</packaging>
+
+  <name>modular-webapp-server</name>
+  <description>Server-side code and web application</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>murdockinfotech</groupId>
+      <artifactId>modular-webapp-shared</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- Pull in the compiled GWT client (WAR) so we can serve its static output from this Spring Boot app -->
+    <dependency>
+      <groupId>murdockinfotech</groupId>
+      <artifactId>modular-webapp-client</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- Spring Boot Starter Web with Jetty -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+    
+    <!-- Project Dependencies -->
+    <dependency>
+      <groupId>org.gwtproject</groupId>
+      <artifactId>gwt-servlet</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>modular-webapp</finalName>
+    <plugins>
+      <!-- Unpack the client WAR's static output into this app's classpath (/static) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-gwt-client</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>murdockinfotech</groupId>
+                  <artifactId>modular-webapp-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>war</type>
+                  <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
+                  <includes>modularwebapp/**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+

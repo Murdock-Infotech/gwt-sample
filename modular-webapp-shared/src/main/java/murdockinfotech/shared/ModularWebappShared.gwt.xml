@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Provide GWT/RPC types needed by shared DTOs + service interfaces -->
+  <inherits name='com.google.gwt.user.User'/>
+
+  <!-- Include everything under murdockinfotech.shared.* -->
+  <source path=''/>
+</module>
+
+
+

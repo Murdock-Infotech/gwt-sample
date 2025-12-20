@@ -1,0 +1,60 @@
+# ---- OS / misc ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# ---- Java / Maven build outputs ----
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+# ---- GWT (generated / caches) ----
+gwt-unitCache/
+.gwt/
+
+# ---- IDEs / editors ----
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse / GWT Eclipse plugin
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/
+nb-configuration.xml
+
+# ---- Maven wrapper / tooling ----
+# (Keep wrapper scripts tracked; only ignore the downloaded JARs/cache if they exist)
+.mvn/wrapper/maven-wrapper.jar
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='modularwebapp'>
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name='murdockinfotech.shared.ModularWebappShared'/>
+  
+  <source path=''/>
+  
+  <entry-point class='murdockinfotech.client.ModularWebapp'/>
+  
+  <set-configuration-property name="devModeRedirectEnabled" value="true"/>
+  <set-configuration-property name="xsiframe.failIfScriptTag" value="FALSE"/>
+</module>
+
