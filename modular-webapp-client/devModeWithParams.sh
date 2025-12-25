@@ -1,0 +1,1 @@
+./devMode.sh -style PRETTY murdockinfotech.client.ModularWebapp
