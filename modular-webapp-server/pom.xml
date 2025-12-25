@@ -54,32 +54,6 @@
   <build>
     <finalName>modular-webapp</finalName>
     <plugins>
-      <!-- Unpack the client WAR's static output into this app's classpath (/static) -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>unpack-gwt-client</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>murdockinfotech</groupId>
-                  <artifactId>modular-webapp-client</artifactId>
-                  <version>${project.version}</version>
-                  <type>war</type>
-                  <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
-                  <includes>modularwebapp/**</includes>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

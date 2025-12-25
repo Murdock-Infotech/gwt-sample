@@ -3,6 +3,7 @@ package murdockinfotech.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Button;
@@ -20,23 +21,47 @@ import murdockinfotech.shared.service.UserServiceAsync;
 public class ModularWebapp implements EntryPoint {
   
   private final UserServiceAsync userService = GWT.create(UserService.class);
+
+  private static native String getConfiguredContextRoot() /*-{
+    return ($wnd && $wnd.__MODULAR_WEBAPP_CONTEXT_ROOT__) ? $wnd.__MODULAR_WEBAPP_CONTEXT_ROOT__ : null;
+  }-*/;
+
+  private static String normalizeNoTrailingSlash(String value) {
+    if (value == null) {
+      return null;
+    }
+    String v = value.trim();
+    while (v.endsWith("/")) {
+      v = v.substring(0, v.length() - 1);
+    }
+    return v.isEmpty() ? null : v;
+  }
   
   public void onModuleLoad() {
-    // Ensure the RPC endpoint matches the server servlet mapping.
-    // With the GWT module at /modularwebapp/, this resolves to /modularwebapp/userService
-    ((ServiceDefTarget) userService).setServiceEntryPoint(GWT.getModuleBaseURL() + "userService");
+    // RPC endpoint:
+    // - Prefer a value provided by Spring Boot (via /client-config.js, backed by application.properties)
+    // - Fall back to the current browser origin
+    //
+    // Final URL: {contextRoot}/{moduleName}/userService
+    String contextRoot = normalizeNoTrailingSlash(getConfiguredContextRoot());
+    if (contextRoot == null) {
+      contextRoot = Window.Location.getProtocol() + "//" + Window.Location.getHost();
+    }
+    GWT.log("contextRoot: " + contextRoot);
+    String serviceUrl = contextRoot + "/" + GWT.getModuleName() + "/userService";
+    ((ServiceDefTarget) userService).setServiceEntryPoint(serviceUrl);
 
     VerticalPanel mainPanel = new VerticalPanel();
     mainPanel.setSpacing(10);
     
-    Label title = new Label("Modular Web Application");
+    Label title = new Label("Modular Web Application 7");
     title.setStyleName("title");
     mainPanel.add(title);
     
     Label statusLabel = new Label("Ready");
     mainPanel.add(statusLabel);
     
-    Button testButton = new Button("Test Server Connection Client");
+    Button testButton = new Button("Test Server Connection Client 3");
     testButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {

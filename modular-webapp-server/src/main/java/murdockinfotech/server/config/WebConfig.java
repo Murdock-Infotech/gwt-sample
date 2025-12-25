@@ -1,9 +1,12 @@
 package murdockinfotech.server.config;
 
 import murdockinfotech.server.UserServiceImpl;
+import murdockinfotech.server.filter.GwtNoCacheFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -12,6 +15,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    /**
+     * Prevent caching of GWT bootstrap scripts (e.g. modularwebapp.nocache.js).
+     */
+    @Bean
+    public FilterRegistrationBean<GwtNoCacheFilter> gwtNoCacheFilter() {
+        FilterRegistrationBean<GwtNoCacheFilter> registration = new FilterRegistrationBean<>();
+        registration.setFilter(new GwtNoCacheFilter());
+        registration.addUrlPatterns("*.nocache.js");
+        registration.setName("gwtNoCacheFilter");
+        registration.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return registration;
+    }
 
     @Bean
     @SuppressWarnings({"rawtypes", "unchecked"})
