@@ -1,4 +1,4 @@
-# This is a sample GWT client project used to demonstrate GWT SuperDevMode.
+# This is a sample GWT client project used to demonstrate GWT SuperDevMode using VS Code.
 
 To start the backend, navigate to `modular-webapp-server` and run the `ModularWebApplication.java` class
 
