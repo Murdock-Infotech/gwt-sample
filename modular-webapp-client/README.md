@@ -1,5 +1,7 @@
 # This is a sample GWT client project used to demonstrate GWT SuperDevMode using VS Code.
 
+The next goal is to implement a [VS Code extension](https://docs.google.com/document/d/1fX_2zoNj3UByTINpmZn81nQ6vR0avS2eFlQSSqKD14s/edit?usp=sharing) that leverages the same functionality with minimal project configuration and remove manual recompiles: 
+
 To start the backend, navigate to `modular-webapp-server` and run the `ModularWebApplication.java` class
 
 ![Backend startup screenshot](./screenshots/backend-startup.png)
