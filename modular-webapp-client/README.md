@@ -11,7 +11,7 @@ To start up SuperDevMode, run the command:
 
 ![DevMode screenshot](./screenshots/devmode-startup.png)
 
-Some key SuperDevMode parameters that are important to SuperDevMode running properly are found in `devMode.sh`. For example: 
+Some key SuperDevMode parameters that are important to SuperDevMode running properly are found in `devMode.sh and devMode.ps1`. For example: 
 
 - `-noincremental` tells SuperDevMode to do a full compile of the GWT project. This parameter removed an error that seemed to make it impossible for SuperDevMode to properly build the project.
 - `-style PRETTY` tells SuperDevMode to send source code maps for debugging that are easy to read including Java variable names and values
