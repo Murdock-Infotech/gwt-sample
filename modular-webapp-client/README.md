@@ -7,7 +7,7 @@ To start the backend, navigate to `modular-webapp-server` and run the `ModularWe
 To start up SuperDevMode, run the command:
 
 - Mac/Linux: `cd modular-webapp-client && ./devModeWithParams.sh`
-- Windows: `cd 'c:\Users\Sean\GWTProjects\gwt-sample\modular-webapp-client'; ./devModeWithParams.ps1`
+- Windows: `cd modular-webapp-client; ./devModeWithParams.ps1`
 
 ![DevMode screenshot](./screenshots/devmode-startup.png)
 
