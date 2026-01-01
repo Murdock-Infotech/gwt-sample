@@ -21,5 +21,5 @@ $defaultParams = @('-style', 'PRETTY', 'murdockinfotech.client.ModularWebapp')
 # Merge defaults with any user-supplied args (user args appended)
 $allParams = $defaultParams + $args
 
-& pwsh -File $devModeScript -- $allParams
+& $devModeScript @allParams
 exit $LASTEXITCODE

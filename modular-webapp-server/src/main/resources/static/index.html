@@ -85,9 +85,6 @@
           showGwtLoading("Failed to load /modularwebapp/modularwebapp.nocache.js (404 or blocked). Build first (mvn compile) then run the server from modular-webapp-server.");
           return;
         }
-        if (typeof modularwebapp === 'undefined') {
-          showGwtLoading("GWT bootstrap didn't execute (modularwebapp is undefined). Check the browser console + Network tab for errors loading /modularwebapp/*.");
-        }
       }, 750);
     });
   </script>
