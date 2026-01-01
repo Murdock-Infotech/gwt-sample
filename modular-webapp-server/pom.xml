@@ -20,14 +20,6 @@
       <artifactId>modular-webapp-shared</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <!-- Pull in the compiled GWT client (WAR) so we can serve its static output from this Spring Boot app -->
-    <dependency>
-      <groupId>murdockinfotech</groupId>
-      <artifactId>modular-webapp-client</artifactId>
-      <version>${project.version}</version>
-      <type>war</type>
-      <scope>runtime</scope>
-    </dependency>
     <!-- Spring Boot Starter Web with Jetty -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
