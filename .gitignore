@@ -25,6 +25,9 @@ Thumbs.db
 *.tar.gz
 *.rar
 
+# ---- Allow vendored GWT SDK jars (track only these, keep other jars ignored) ----
+!modular-webapp-client/lib/gwt-2.12.2/**/*.jar
+
 # JVM crash logs
 hs_err_pid*
 replay_pid*
@@ -47,7 +50,8 @@ out/
 .settings/
 
 # VS Code
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # NetBeans
 nbproject/

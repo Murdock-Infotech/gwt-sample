@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "GWT SuperDevMode: debug in Chrome (host page :8080, code server :9876)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8080/",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "http://localhost:9876/**",
+        "http://127.0.0.1:9876/**",
+        "!**/node_modules/**"
+      ],
+      "trace": true,
+      "sourceMapPathOverrides": {
+        "http://localhost:9876/sourcemaps/modularwebapp/murdockinfotech/client/*": "${workspaceFolder}/modular-webapp-client/src/main/java/murdockinfotech/client/*",
+        "http://127.0.0.1:9876/sourcemaps/modularwebapp/murdockinfotech/client/*": "${workspaceFolder}/modular-webapp-client/src/main/java/murdockinfotech/client/*",
+        "http://localhost:9876/sourcemaps/modularwebapp/murdockinfotech/shared/*": "${workspaceFolder}/modular-webapp-shared/src/main/java/murdockinfotech/shared/*",
+        "http://127.0.0.1:9876/sourcemaps/modularwebapp/murdockinfotech/shared/*": "${workspaceFolder}/modular-webapp-shared/src/main/java/murdockinfotech/shared/*",
+
+        "murdockinfotech/client/*": "${workspaceFolder}/modular-webapp-client/src/main/java/murdockinfotech/client/*",
+        "murdockinfotech/shared/*": "${workspaceFolder}/modular-webapp-shared/src/main/java/murdockinfotech/shared/*"
+      }
+    },
+    {
+      "name": "GWT SuperDevMode: attach to Chrome (remote debugging port 9222)",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "http://localhost:9876/**",
+        "http://127.0.0.1:9876/**",
+        "!**/node_modules/**"
+      ],
+      "trace": true,
+      "sourceMapPathOverrides": {
+        "http://localhost:9876/sourcemaps/modularwebapp/murdockinfotech/client/*": "${workspaceFolder}/modular-webapp-client/src/main/java/murdockinfotech/client/*",
+        "http://127.0.0.1:9876/sourcemaps/modularwebapp/murdockinfotech/client/*": "${workspaceFolder}/modular-webapp-client/src/main/java/murdockinfotech/client/*",
+        "http://localhost:9876/sourcemaps/modularwebapp/murdockinfotech/shared/*": "${workspaceFolder}/modular-webapp-shared/src/main/java/murdockinfotech/shared/*",
+        "http://127.0.0.1:9876/sourcemaps/modularwebapp/murdockinfotech/shared/*": "${workspaceFolder}/modular-webapp-shared/src/main/java/murdockinfotech/shared/*",
+
+        "murdockinfotech/client/*": "${workspaceFolder}/modular-webapp-client/src/main/java/murdockinfotech/client/*",
+        "murdockinfotech/shared/*": "${workspaceFolder}/modular-webapp-shared/src/main/java/murdockinfotech/shared/*"
+      }
+    }
+  ]
+}
+
