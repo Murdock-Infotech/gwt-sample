@@ -7,10 +7,55 @@
 
   <display-name>Modular Web Application</display-name>
 
+  <!-- Root Spring context (non-Boot) -->
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>murdockinfotech.server.config.AppRootConfig</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+
+  <!-- Spring MVC DispatcherServlet -->
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>murdockinfotech.server.config.WebMvcConfig</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <!-- Filters -->
+  <filter>
+    <filter-name>gwtNoCacheFilter</filter-name>
+    <filter-class>murdockinfotech.server.filter.GwtNoCacheFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>gwtNoCacheFilter</filter-name>
+    <url-pattern>*.nocache.js</url-pattern>
+  </filter-mapping>
 
   <!-- Servlets -->
   <servlet>

@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>modular-webapp-server</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>modular-webapp-server</name>
   <description>Server-side code and web application</description>
@@ -20,20 +20,32 @@
       <artifactId>modular-webapp-shared</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <!-- Spring Boot Starter Web with Jetty -->
+    <!-- Spring (non-Boot): Spring MVC -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+    </dependency>
+    <!-- Spring MVC's default validator integration expects a Bean Validation implementation on the classpath -->
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.2.5.Final</version>
+    </dependency>
+    <!-- Override the very old validation-api pulled transitively by gwt-user (1.0.0.GA) -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jetty</artifactId>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>3.0.1-b12</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
     </dependency>
     
     <!-- Project Dependencies -->
@@ -47,15 +59,14 @@
     <finalName>modular-webapp</finalName>
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.54.v20240208</version>
+        <configuration>
+          <webApp>
+            <contextPath>/</contextPath>
+          </webApp>
+        </configuration>
       </plugin>
     </plugins>
   </build>

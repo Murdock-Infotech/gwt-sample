@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Backend (Jetty): mvn jetty:run (:8083)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "mvn -pl modular-webapp-server -am -DskipTests jetty:run -Djetty.http.port=8083",
+      "cwd": "${workspaceFolder}",
+      "noDebug": true
+    },
+    {
       "type": "java",
       "name": "ModularWebappApplication",
       "request": "launch",
