@@ -5,7 +5,9 @@
   <title>Modular Web Application</title>
   <!-- Runtime config from Spring Boot (application.properties) -->
   <script type="text/javascript" language="javascript" src="/client-config.js"></script>
-  <script type="text/javascript" language="javascript" src="modularwebapp/modularwebapp.nocache.js"></script>
+  <script type="text/javascript" language="javascript"
+          src="http://localhost:9876/modularwebapp/modularwebapp.nocache.js"
+          onerror="window.__gwt_bootstrap_failed = true;"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -25,30 +27,6 @@
       color: #333;
       margin-top: 0;
     }
-    .status-label {
-      margin: 20px 0;
-      padding: 10px;
-      background-color: #e8f5e9;
-      border-left: 4px solid #4caf50;
-      border-radius: 4px;
-    }
-    button {
-      background-color: #2196F3;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    button:hover {
-      background-color: #1976D2;
-    }
-    button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
     #gwt-loading {
       display: none;
       margin-top: 20px;
@@ -57,18 +35,25 @@
       border-left: 4px solid #ffc107;
       border-radius: 4px;
     }
+    #gwt-root {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Modular Web Application</h1>
-    
-    <div class="status-label" id="statusLabel">Ready</div>
-    
-    <button id="testButton" onclick="testServerConnection()">Test Server Connection</button>
-    
+
+    <div id="gwt-root">
+      <div><strong>GWT client UI:</strong></div>
+      <div id="gwtRoot"></div>
+    </div>
+
     <div id="gwt-loading">
-      <strong>Note:</strong> GWT compiled JavaScript not found. Please run <code>mvn gwt:compile</code> to compile the GWT client code.
+      <strong>GWT client not loaded.</strong>
+      <div id="gwt-loading-details" style="margin-top: 8px;"></div>
     </div>
   </div>
 
@@ -79,52 +64,29 @@
   </noscript>
 
   <script>
-    // Check if GWT module loaded
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        if (typeof modularwebapp === 'undefined') {
-          document.getElementById('gwt-loading').style.display = 'block';
-        }
-      }, 1000);
-    });
-
-    function testServerConnection() {
-      var statusLabel = document.getElementById('statusLabel');
-      var testButton = document.getElementById('testButton');
-      
-      statusLabel.textContent = 'Calling server...';
-      statusLabel.style.backgroundColor = '#fff3cd';
-      statusLabel.style.borderLeftColor = '#ffc107';
-      testButton.disabled = true;
-      
-      // Try to call the RPC service (will fail if GWT not compiled, but shows the attempt)
-      fetch('/modularwebapp/userService', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/x-gwt-rpc; charset=utf-8',
-          'X-GWT-Module-Base': '/modularwebapp/',
-          'X-GWT-Permutation': 'HostedMode'
-        },
-        body: '7|0|6|http://localhost:8080/modularwebapp/|murdockinfotech.shared.service.UserService|greetUser|murdockinfotech.shared.UserDto/4222124653|Test User|test@example.com|1|2|3|4|2|5|6|'
-      })
-      .then(function(response) {
-        if (response.ok) {
-          statusLabel.textContent = 'Server connection successful!';
-          statusLabel.style.backgroundColor = '#e8f5e9';
-          statusLabel.style.borderLeftColor = '#4caf50';
-        } else {
-          throw new Error('Server returned ' + response.status);
-        }
-      })
-      .catch(function(error) {
-        statusLabel.textContent = 'Server call failed: ' + error.message + ' (GWT RPC requires compiled GWT code)';
-        statusLabel.style.backgroundColor = '#ffebee';
-        statusLabel.style.borderLeftColor = '#f44336';
-      })
-      .finally(function() {
-        testButton.disabled = false;
-      });
+    function showGwtLoading(msg) {
+      var box = document.getElementById('gwt-loading');
+      var details = document.getElementById('gwt-loading-details');
+      details.textContent = msg || '';
+      box.style.display = 'block';
     }
+
+    // Diagnostics for common "it doesn't render" cases:
+    // - Viewing this HTML as a file (file://) instead of via the running server
+    // - Missing /modularwebapp/modularwebapp.nocache.js at runtime
+    window.addEventListener('load', function() {
+      if (window.location.protocol === 'file:') {
+        showGwtLoading("You're viewing this page via file://. Start the server and open http://localhost:8080/ so /modularwebapp/* can be served.");
+        return;
+      }
+
+      setTimeout(function() {
+        if (window.__gwt_bootstrap_failed) {
+          showGwtLoading("Failed to load /modularwebapp/modularwebapp.nocache.js (404 or blocked). Build first (mvn compile) then run the server from modular-webapp-server.");
+          return;
+        }
+      }, 750);
+    });
   </script>
 </body>
 </html>
