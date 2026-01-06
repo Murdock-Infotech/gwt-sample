@@ -76,7 +76,7 @@
     {
       "name": "Backend (Jetty) DEBUG: start + attach",
       "configurations": [
-        "Backend (Jetty): mvn jetty:run (:8083) [DEBUG :5005]",
+        "Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]",
         "Attach to Jetty (JDWP :5005)"
       ],
       "stopAll": true
