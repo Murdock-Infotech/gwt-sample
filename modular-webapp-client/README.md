@@ -30,7 +30,7 @@ Another important factor for debugging is to properly configure the `.vscode/lau
 ```
 
 To use the debugger:
-- click the VS Code Run menu
+- type: (Windows) `SHIFT CTRL D` or (Mac) `SHIFT CMD D` 
 - click Start Debugging
 
 
