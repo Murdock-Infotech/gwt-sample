@@ -86,11 +86,6 @@
           <version>3.4.0</version>
         </plugin>
         <plugin>
-          <groupId>org.eclipse.jetty.ee10</groupId>
-          <artifactId>jetty-ee10-maven-plugin</artifactId>
-          <version>12.1.2</version>
-        </plugin>
-        <plugin>
           <groupId>net.ltgt.gwt.maven</groupId>
           <artifactId>gwt-maven-plugin</artifactId>
           <version>1.2.0</version>
