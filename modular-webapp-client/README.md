@@ -1,10 +1,8 @@
-# This is a sample GWT client project used to demonstrate GWT SuperDevMode using VS Code.
+# This is a sample GWT client project used to demonstrate GWT SuperDevMode using VS Code or Cursor.
 
 The next goal is to implement a [VS Code extension](https://docs.google.com/document/d/1fX_2zoNj3UByTINpmZn81nQ6vR0avS2eFlQSSqKD14s/edit?usp=sharing) that leverages the same functionality with minimal project configuration and remove manual recompiles: 
 
-To start the backend, navigate to `modular-webapp-server` and run the `ModularWebApplication.java` class
-
-![Backend startup screenshot](./screenshots/backend-startup.png)
+To start the backend (Jetty), see the backend README: [`../modular-webapp-server/README.md`](../modular-webapp-server/README.md)
 
 To start up SuperDevMode, run the command:
 
@@ -30,7 +28,8 @@ Another important factor for debugging is to properly configure the `.vscode/lau
 ```
 
 To use the debugger:
-- click the VS Code Run menu
+- Mac/Linux: `SHIFT CMD D` 
+- Windows: `SHIFT CTRL D`
 - click Start Debugging
 
 
