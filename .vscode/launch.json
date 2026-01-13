@@ -2,28 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Backend (Jetty): mvn jetty:run (:8080)",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "mvn -pl modular-webapp-server -am -DskipTests jetty:run -Djetty.http.port=8080",
-      "cwd": "${workspaceFolder}"
-    },
-    {
-      "name": "Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "mvn -pl modular-webapp-server -am -DskipTests jetty:run -Djetty.http.port=8080",
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "MAVEN_OPTS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
-      }
-    },
-    {
       "type": "java",
       "name": "Attach to Jetty (JDWP :5005)",
       "request": "attach",
       "hostName": "localhost",
-      "port": 5005
+      "port": 5005,
+      "preLaunchTask": "Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]"
     },
     {
       "name": "GWT SuperDevMode: debug in Chrome (host page :8080, code server :9876)",
@@ -76,7 +60,6 @@
     {
       "name": "Backend (Jetty) DEBUG: start + attach",
       "configurations": [
-        "Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]",
         "Attach to Jetty (JDWP :5005)"
       ],
       "stopAll": true

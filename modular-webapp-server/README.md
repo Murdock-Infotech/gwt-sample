@@ -9,7 +9,7 @@ This module runs the backend on Jetty and supports **remote debugging via JDWP**
    - Windows/Linux: **Ctrl + Shift + D**
 
 2. Click the **debug configuration dropdown** and select:
-   - `Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]`
+   - `Backend (Jetty) DEBUG: start + attach`
 
 ![Debug dropdown](./screenshots/debug-dropdown.png)
 
@@ -17,9 +17,8 @@ This module runs the backend on Jetty and supports **remote debugging via JDWP**
 
 ![Start Jetty with remote debugging selected](./screenshots/start-jetty-with-remote-debugging.png)
 
-4. Start the debug session (then attach the Java debugger if prompted/needed):
-   - `Attach to Jetty (JDWP :5005)`
-   - (Optional) `Backend (Jetty) DEBUG: start + attach` (compound)
+4. Start the debug session:
+   - `Backend (Jetty) DEBUG: start + attach` (this starts Jetty via a VS Code task, then attaches on :5005)
 
 ![Jetty remote debug running](./screenshots/jetty-remote-debug.png)
 
