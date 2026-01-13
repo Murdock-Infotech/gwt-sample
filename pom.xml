@@ -46,6 +46,15 @@
 
   <build>
     <plugins>
+      <!--
+        JDK 11-compatible Jetty Maven plugin (Jetty 9.4 / javax.servlet).
+        Jetty 12 EE10 (`org.eclipse.jetty.ee10:*`) requires newer JDKs and Jakarta EE 10.
+      -->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.54.v20240208</version>
+      </plugin>
       <plugin>
         <groupId>net.ltgt.gwt.maven</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
@@ -84,11 +93,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.4.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.eclipse.jetty.ee10</groupId>
-          <artifactId>jetty-ee10-maven-plugin</artifactId>
-          <version>12.1.2</version>
         </plugin>
         <plugin>
           <groupId>net.ltgt.gwt.maven</groupId>
