@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Backend (Jetty): mvn jetty:run (:8080)",
+      "type": "process",
+      "command": "mvn",
+      "args": [
+        "-pl",
+        "modular-webapp-server",
+        "-am",
+        "-DskipTests",
+        "jetty:run",
+        "-Djetty.http.port=8080"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "jetty-run",
+        "pattern": [
+          {
+            "regexp": ".*"
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*\\[INFO\\] --- .*jetty.*:run.*",
+          "endsPattern": ".*Started (ServerConnector|Jetty Server).*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": false
+      }
+    },
+    {
+      "label": "Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]",
+      "type": "process",
+      "command": "mvn",
+      "args": [
+        "-pl",
+        "modular-webapp-server",
+        "-am",
+        "-DskipTests",
+        "jetty:run",
+        "-Djetty.http.port=8080"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "MAVEN_OPTS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "jetty-run-debug",
+        "pattern": [
+          {
+            "regexp": ".*"
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*\\[INFO\\] --- .*jetty.*:run.*",
+          "endsPattern": ".*Started (ServerConnector|Jetty Server).*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": false
+      }
+    }
+  ]
+}
+
+
