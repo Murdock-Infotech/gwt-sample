@@ -21,7 +21,9 @@
         "owner": "jetty-run",
         "pattern": [
           {
-            "regexp": ".*"
+            "regexp": "^(.*)$",
+            "file": 1,
+            "message": 1
           }
         ],
         "background": {
@@ -59,7 +61,9 @@
         "owner": "jetty-run-debug",
         "pattern": [
           {
-            "regexp": ".*"
+            "regexp": "^(.*)$",
+            "file": 1,
+            "message": 1
           }
         ],
         "background": {
