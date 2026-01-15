@@ -47,7 +47,7 @@
         <configuration>
           <moduleName>murdockinfotech.client.ModularWebapp</moduleName>
           <moduleShortName>modularwebapp</moduleShortName>
-          <sourceLevel>17</sourceLevel>
+          <sourceLevel>11</sourceLevel>
           <classpathScope>compile</classpathScope>
           <skipModule>true</skipModule>
         </configuration>
