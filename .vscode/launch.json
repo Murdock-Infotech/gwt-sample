@@ -32,7 +32,7 @@
       "cwd": "${workspaceFolder}/modular-webapp-client",
       "command": "bash ./devModeWithParams.sh",
       "windows": {
-        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .\\devModeWithParams.ps1"
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./devModeWithParams.ps1"
       },
       "osx": {
         "command": "bash ./devModeWithParams.sh"
