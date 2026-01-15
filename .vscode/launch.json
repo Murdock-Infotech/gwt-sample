@@ -2,14 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Backend (Jetty): mvn jetty:run (:8080)",
+      "name": "Launch Backend (Jetty)(:8080)",
       "type": "node-terminal",
       "request": "launch",
       "command": "mvn -pl modular-webapp-server -am -DskipTests jetty:run -Djetty.http.port=8080",
       "cwd": "${workspaceFolder}"
     },
     {
-      "name": "Backend (Jetty): mvn jetty:run (:8080) [DEBUG :5005]",
+      "name": "Launch Backend (Jetty) - remote debugging listening (:8080) [DEBUG :5005]",
       "type": "node-terminal",
       "request": "launch",
       "command": "mvn -pl modular-webapp-server -am -DskipTests jetty:run -Djetty.http.port=8080",
@@ -20,13 +20,29 @@
     },
     {
       "type": "java",
-      "name": "Attach to Jetty (JDWP :5005)",
+      "name": "Debug backend - attach to remote debugging port (JDWP :5005)",
       "request": "attach",
       "hostName": "localhost",
       "port": 5005
     },
     {
-      "name": "GWT SuperDevMode: debug in Chrome (host page :8080, code server :9876)",
+      "name": "GWT CodeServer (:9876)",
+      "type": "node-terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/modular-webapp-client",
+      "command": "bash ./devModeWithParams.sh",
+      "windows": {
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .\\devModeWithParams.ps1"
+      },
+      "osx": {
+        "command": "bash ./devModeWithParams.sh"
+      },
+      "linux": {
+        "command": "bash ./devModeWithParams.sh"
+      }
+    },
+    {
+      "name": "GWT Debug in Chrome (host page :8080, code server :9876)",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080/",
