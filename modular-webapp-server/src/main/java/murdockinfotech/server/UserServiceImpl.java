@@ -17,7 +17,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
   
   @Override
   public String greetUser(UserDto user) {
-    return "Hello, " + user.getName() + "! Your email is " + user.getEmail();
+    return "Hello " + user.getName() + "! Your email is " + user.getEmail();
   }
 }
 
