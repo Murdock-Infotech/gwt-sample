@@ -15,6 +15,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <!-- Spring Framework 5.3.x uses javax.servlet.*, which is required by GWT RPC (RemoteServiceServlet) -->
     <spring-framework.version>5.3.34</spring-framework.version>
   </properties>
@@ -46,6 +49,13 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
       <!--
         JDK 11-compatible Jetty Maven plugin (Jetty 9.4 / javax.servlet).
         Jetty 12 EE10 (`org.eclipse.jetty.ee10:*`) requires newer JDKs and Jakarta EE 10.

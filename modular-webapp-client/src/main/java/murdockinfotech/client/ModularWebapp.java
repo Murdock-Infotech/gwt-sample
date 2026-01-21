@@ -61,7 +61,7 @@ public class ModularWebapp implements EntryPoint {
     Label statusLabel = new Label("Ready");
     mainPanel.add(statusLabel);
     
-    Button testButton = new Button("Test Server Connection Client 4");
+    Button testButton = new Button("Test Server Connection Client 16");
     testButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {

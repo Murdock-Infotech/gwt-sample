@@ -35,5 +35,3 @@ public class UserDto implements IsSerializable {
     this.email = email;
   }
 }
-
-

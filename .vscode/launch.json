@@ -31,15 +31,15 @@
       "type": "node-terminal",
       "request": "launch",
       "cwd": "${workspaceFolder}/modular-webapp-client",
-      "command": "bash ./devModeWithParams.sh",
+      "command": "bash -lc \"./devModeWithParams.sh & ./autoRecompile.sh\"",
       "windows": {
-        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./devModeWithParams.ps1"
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"& { if (Get-Command pwsh -ErrorAction SilentlyContinue) { Start-Process -NoNewWindow -FilePath pwsh -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','./devModeWithParams.ps1' } else { Start-Process -NoNewWindow -FilePath powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','./devModeWithParams.ps1' }; if (Get-Command pwsh -ErrorAction SilentlyContinue) { pwsh -NoProfile -ExecutionPolicy Bypass -File ./autoRecompile.ps1 } else { powershell -NoProfile -ExecutionPolicy Bypass -File ./autoRecompile.ps1 } }\""
       },
       "osx": {
-        "command": "bash ./devModeWithParams.sh"
+        "command": "bash -lc \"./devModeWithParams.sh & ./autoRecompile.sh\""
       },
       "linux": {
-        "command": "bash ./devModeWithParams.sh"
+        "command": "bash -lc \"./devModeWithParams.sh & ./autoRecompile.sh\""
       }
     },
     {
