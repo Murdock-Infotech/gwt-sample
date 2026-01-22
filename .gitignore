@@ -51,8 +51,8 @@ out/
 
 # VS Code
 .vscode/*
-!.vscode/launch.json
 !.vscode/settings.json
+.vscode/launch.json
 
 # NetBeans
 nbproject/
