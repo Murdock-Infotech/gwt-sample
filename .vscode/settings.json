@@ -1,15 +1,23 @@
 {
     "terminal.integrated.profiles.windows": {
       "Git Bash": {
-        "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+        "path": "bash.exe",
+        "args": [
+          "--login",
+          "-i"
+        ]
       }
     },
     "terminal.integrated.defaultProfile.windows": "Git Bash",
 
     // Cursor/VS Code uses a separate “automation” terminal for tasks/debug adapters.
-    // Keep this pointing at your local Git Bash install (edit the path to match your machine).
+    // Use Git Bash if available on PATH (no machine-specific install path).
     "terminal.integrated.automationProfile.windows": {
-      "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+      "path": "bash.exe",
+      "args": [
+        "--login",
+        "-i"
+      ]
     },
     "java.compile.nullAnalysis.mode": "disabled"
   }
