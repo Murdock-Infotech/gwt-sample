@@ -6,7 +6,7 @@ This repo contains:
 
 ## VS Code / Cursor setup (Windows Git Bash + automation terminal)
 
-If you use **Git Bash on Windows**, update [`.vscode/settings.json`](.vscode/settings.json) to point to your actual `bash.exe` install path.
+If you use **Git Bash on Windows**, you (each developer) will need to update [`.vscode/settings.json`](.vscode/settings.json) to point to the correct local path for your Git Bash executable (`bash.exe`).
 
 This project also sets the **automation terminal** so Cursor/VS Code can run tasks/debug terminals using the same shell:
 - `terminal.integrated.automationProfile.windows`
