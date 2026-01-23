@@ -18,18 +18,48 @@
     <maven.compiler.release>11</maven.compiler.release>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <!-- Spring Framework 5.3.x uses javax.servlet.*, which is required by GWT RPC (RemoteServiceServlet) -->
-    <spring-framework.version>5.3.34</spring-framework.version>
+    <!-- Spring Framework 4.3.x (javax.servlet.*; compatible with GWT RPC RemoteServiceServlet) -->
+    <spring-framework.version>4.3.30.RELEASE</spring-framework.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+      <!-- Spring 4.3.x does not reliably publish the spring-framework-bom for all patch versions.
+           Keep all Spring modules version-aligned explicitly. -->
       <dependency>
         <groupId>org.springframework</groupId>
-        <artifactId>spring-framework-bom</artifactId>
+        <artifactId>spring-aop</artifactId>
         <version>${spring-framework.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring-framework.version}</version>
       </dependency>
       <dependency>
         <groupId>org.gwtproject</groupId>

@@ -27,15 +27,17 @@
     </dependency>
     <!-- Spring MVC's default validator integration expects a Bean Validation implementation on the classpath -->
     <dependency>
-      <groupId>org.hibernate.validator</groupId>
+      <!-- Hibernate Validator 5.x is published under the org.hibernate groupId -->
+      <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>6.2.5.Final</version>
+      <!-- Align with Spring 4.3 era Bean Validation API (javax.validation 1.1) -->
+      <version>5.4.1.Final</version>
     </dependency>
     <!-- Override the very old validation-api pulled transitively by gwt-user (1.0.0.GA) -->
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
-      <version>2.0.1.Final</version>
+      <version>1.1.0.Final</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish</groupId>
