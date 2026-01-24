@@ -20,6 +20,11 @@
     <maven.compiler.target>11</maven.compiler.target>
     <!-- Spring Framework 4.3.x (javax.servlet.*; compatible with GWT RPC RemoteServiceServlet) -->
     <spring-framework.version>4.3.30.RELEASE</spring-framework.version>
+    <!-- JPA stack (non-Boot) -->
+    <spring-data-jpa.version>1.11.23.RELEASE</spring-data-jpa.version>
+    <hibernate.version>5.4.29.Final</hibernate.version>
+    <h2.version>2.2.224</h2.version>
+    <javax.persistence-api.version>2.2</javax.persistence-api.version>
   </properties>
 
   <dependencyManagement>
@@ -61,6 +66,56 @@
         <artifactId>spring-webmvc</artifactId>
         <version>${spring-framework.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <!-- Spring Data JPA (Spring Framework 4.3 compatible line) -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>${spring-data-jpa.version}</version>
+      </dependency>
+
+      <!-- JPA provider + in-memory DB -->
+      <dependency>
+        <groupId>javax.persistence</groupId>
+        <artifactId>javax.persistence-api</artifactId>
+        <version>${javax.persistence-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>org.gwtproject</groupId>
         <artifactId>gwt</artifactId>

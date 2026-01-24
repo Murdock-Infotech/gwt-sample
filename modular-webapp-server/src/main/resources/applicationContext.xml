@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+  <!--
+    Root Spring context XML.
+
+    NOTE: tx:annotation-driven mode="aspectj" requires Spring Aspects + AspectJ weaver on the classpath.
+    It also expects a PlatformTransactionManager bean named "transactionManager".
+  -->
+
+  <context:component-scan base-package="murdockinfotech.server"/>
+  <context:annotation-config/>
+
+  <tx:annotation-driven mode="aspectj"/>
+
+  <!-- Spring Data JPA repositories (optional, but matches the legacy XML style you're mimicking). -->
+  <jpa:repositories base-package="murdockinfotech.server.repository"
+                    entity-manager-factory-ref="entityManagerFactory"
+                    transaction-manager-ref="transactionManager"/>
+
+  <!-- H2 in-memory DataSource (named to match the legacy config's "profileDataSource"). -->
+  <bean id="profileDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="org.h2.Driver"/>
+    <!-- MySQL mode approximates behavior for legacy MySQL-oriented configs/dialects. -->
+    <property name="url" value="jdbc:h2:mem:modularwebapp;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false"/>
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>
+
+  <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+    <property name="showSql" value="true"/>
+    <property name="generateDdl" value="true"/>
+    <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+  </bean>
+
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="dataSource" ref="profileDataSource"/>
+    <property name="persistenceUnitName" value="springDataJPA"/>
+    <property name="packagesToScan" value="murdockinfotech.server.domain"/>
+    <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+    <property name="jpaProperties">
+      <props>
+        <!-- dialect -->
+        <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+
+        <!-- ddl / debugging -->
+        <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.format_sql">true</prop>
+
+        <!-- mimic some common legacy MySQL-oriented props -->
+        <prop key="hibernate.connection.useUnicode">true</prop>
+        <prop key="hibernate.connection.charSet">UTF-8</prop>
+        <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+        <prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
+        <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory"/>
+  </bean>
+
+</beans>

@@ -13,6 +13,12 @@
  
   <name>modular-webapp-server</name>
   <description>Server-side code and web application</description>
+
+  <properties>
+    <!-- Allow overriding via -Djetty.http.port / -Djetty.stopPort -->
+    <jetty.http.port>8080</jetty.http.port>
+    <jetty.stopPort>9999</jetty.stopPort>
+  </properties>
  
   <dependencies>
     <dependency>
@@ -24,6 +30,52 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
+    </dependency>
+    <!-- JPA (Spring ORM) + JDBC (DataSource) -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+    </dependency>
+    <!-- Transactions + AspectJ-based @Transactional support (tx:annotation-driven mode="aspectj") -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+    </dependency>
+    <!-- Spring Data JPA (optional, for repository scanning / mimic legacy XML config) -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+    </dependency>
+    <!-- JPA provider + in-memory DB -->
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>javax.persistence-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.9.22.1</version>
     </dependency>
     <!-- Spring MVC's default validator integration expects a Bean Validation implementation on the classpath -->
     <dependency>
@@ -74,14 +126,25 @@
         <artifactId>jetty-maven-plugin</artifactId>
         <version>9.4.54.v20240208</version>
         <configuration>
+          <httpConnector>
+            <port>${jetty.http.port}</port>
+          </httpConnector>
           <webApp>
             <contextPath>/</contextPath>
+            <!--
+              Include the GWT compile output so GWT RPC can load serialization policies
+              (e.g. /modularwebapp/*.gwt.rpc) while running the backend via jetty:run.
+            -->
+            <resourceBases>
+              <resourceBase>${project.basedir}/src/main/webapp</resourceBase>
+              <resourceBase>${project.basedir}/../modular-webapp-client/war</resourceBase>
+            </resourceBases>
           </webApp>
           <!-- Enable hot reloading -->
           <scanIntervalSeconds>2</scanIntervalSeconds>
           <reload>automatic</reload>
           <stopKey>STOP</stopKey>
-          <stopPort>9999</stopPort>
+          <stopPort>${jetty.stopPort}</stopPort>
           <scanTargets>
             <scanTarget>src/main/webapp</scanTarget>
             <scanTarget>target/classes</scanTarget>

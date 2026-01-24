@@ -5,9 +5,28 @@
   <title>Modular Web Application</title>
   <!-- Runtime config from Spring Boot (application.properties) -->
   <script type="text/javascript" language="javascript" src="/client-config.js"></script>
-  <script type="text/javascript" language="javascript"
-          src="http://localhost:9876/modularwebapp/modularwebapp.nocache.js"
-          onerror="window.__gwt_bootstrap_failed = true;"></script>
+  <script>
+    (function() {
+      // Default: load the GWT bootstrap from the backend so RPC serialization policies
+      // are loaded from the same origin (/modularwebapp/*.gwt.rpc).
+      //
+      // For Super Dev Mode, run CodeServer on :9876 and open:
+      //   http://localhost:8080/?gwt.codesvr=localhost:9876
+      // This keeps the module base on :8080 while using the CodeServer for recompiles.
+      var params = new URLSearchParams(window.location.search);
+      var codesvr = params.get('gwt.codesvr') || params.get('codesvr');
+      var src = '/modularwebapp/modularwebapp.nocache.js';
+      if (codesvr) {
+        src += '?gwt.codesvr=' + encodeURIComponent(codesvr);
+      }
+
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = src;
+      s.onerror = function() { window.__gwt_bootstrap_failed = true; };
+      document.head.appendChild(s);
+    })();
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
