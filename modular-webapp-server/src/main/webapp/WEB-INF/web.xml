@@ -68,5 +68,15 @@
     <url-pattern>/modularwebapp/userService</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>profileService</servlet-name>
+    <servlet-class>murdockinfotech.server.ProfileServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>profileService</servlet-name>
+    <url-pattern>/modularwebapp/profileService</url-pattern>
+  </servlet-mapping>
+
 </web-app>
 
